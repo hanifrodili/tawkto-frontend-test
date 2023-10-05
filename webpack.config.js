@@ -6,7 +6,7 @@ const dataObj = require("./data/data.json");
 
 module.exports = {
 	entry: [
-		'./src/app.js'
+		'./src/main.js'
 	],
 	output: {
 		path: path.resolve(__dirname, './dist'),
@@ -14,27 +14,33 @@ module.exports = {
 		filename: 'bundle.js'
     },
 	module: {
-		rules: [{
-			test: /\.vue$/,
-			use: 'vue-loader'
-		},
-		{
-			test: /\.scss$/,
-			use: [
-				'vue-style-loader',
-				'css-loader',
-				'sass-loader',
-			]
-		},
-		{
-			test: /\.(ttf|eot|woff|woff2)$/,
-			use: {
-				loader: 'url-loader',
-				options: {
-					name: '[name].[ext]',
-				},
+		rules: [
+			{
+				test: /\.vue$/,
+				use: 'vue-loader'
 			},
-		  }]
+			{
+				test: /\.scss$/,
+				use: [
+					'vue-style-loader',
+					'css-loader',
+					'sass-loader',
+				]
+			},
+			{
+				test: /\.(png|woff|woff2|eot|ttf|svg)$/,
+				use: [
+					{ loader: 'url-loader',
+						options: {
+							limit: 100000 
+						}
+					},
+					{
+						loader: 'file-loader'
+					}
+				]
+			}
+		]
 	},
 	plugins: [
 		new VueLoaderPlugin()
@@ -45,7 +51,7 @@ module.exports = {
 		}
 	},
 	devServer: {
-		contentBase: path.join(__dirname, 'public'),
+		contentBase: path.join(__dirname, 'dist'),
 		port: 9000,
 		historyApiFallback: true,
 		before: function(app, server, compiler) {
