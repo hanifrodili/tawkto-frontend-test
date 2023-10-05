@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --history-api-fallback --config webpack.config.js"
+    "start": "webpack-dev-server --history-api-fallback --config webpack.config.js",
+    "build": "vue-cli-service build"
   },
   "devDependencies": {
     "css-loader": "^3.4.1",
