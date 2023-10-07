@@ -14,33 +14,27 @@ module.exports = {
 		filename: 'bundle.js'
     },
 	module: {
-		rules: [
-			{
-				test: /\.vue$/,
-				use: 'vue-loader'
+		rules: [{
+			test: /\.vue$/,
+			use: 'vue-loader'
+		},
+		{
+			test: /\.scss$/,
+			use: [
+				'vue-style-loader',
+				'css-loader',
+				'sass-loader',
+			]
+		},
+		{
+			test: /\.(ttf|eot|woff|woff2)$/,
+			use: {
+				loader: 'url-loader',
+				options: {
+					name: '[name].[ext]',
+				},
 			},
-			{
-				test: /\.scss$/,
-				use: [
-					'vue-style-loader',
-					'css-loader',
-					'sass-loader',
-				]
-			},
-			{
-				test: /\.(png|woff|woff2|eot|ttf|svg)$/,
-				use: [
-					{ loader: 'url-loader',
-						options: {
-							limit: 100000 
-						}
-					},
-					{
-						loader: 'file-loader'
-					}
-				]
-			}
-		]
+		  }]
 	},
 	plugins: [
 		new VueLoaderPlugin()
@@ -51,9 +45,8 @@ module.exports = {
 		}
 	},
 	devServer: {
-		contentBase: path.join(__dirname, 'dist'),
+		contentBase: path.join(__dirname, 'public'),
 		port: 9000,
-		historyApiFallback: true,
 		before: function(app, server, compiler) {
 			app.get('/api/categories', function (req, res) {
 				res.json(dataObj.categories);

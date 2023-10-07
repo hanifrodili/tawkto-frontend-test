@@ -73,16 +73,7 @@ export default {
   }),
   async mounted() {
     this.categoryId = this.$route.params.id;
-    this.categoryData = JSON.parse(localStorage.getItem('tawk-data')).find(item => item.id === this.categoryId)
-    this.otherCategories = JSON.parse(localStorage.getItem('tawk-data')).filter(item => item.id !== this.categoryId);
-    await axios.get(`/api/category/${this.categoryId}`)
-      .then((resp) => {
-        const data = resp.data
-        this.articleList = data
-      })
-      .catch((error) => {
-        console.log(error);
-      })
+    await this.getCategory()
   },
   methods: {
     countSinceTimestamp(timestamp) {
@@ -108,6 +99,18 @@ export default {
     nextSlide() {
       const slider = this.$refs.slider
       slider.scrollLeft += (180);
+    },
+    async getCategory() {
+      this.categoryData = JSON.parse(localStorage.getItem('tawk-data')).find(item => item.id === this.categoryId)
+      this.otherCategories = JSON.parse(localStorage.getItem('tawk-data')).filter(item => item.id !== this.categoryId);
+      await axios.get(`/api/category/${this.categoryId}`)
+        .then((resp) => {
+          const data = resp.data
+          this.articleList = data
+        })
+        .catch((error) => {
+          console.log(error);
+        })
     }
   }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div id="category-card"  @click="$router.push(`/${category.id}`)">
+  <div id="category-card"  @click="gotToCategory()">
     <div class="category-icon">
       <span :class="`fa fa-${category.icon}`"></span>
     </div>
@@ -31,6 +31,9 @@ export default {
         unit = 'months'
       }
       return `Last update ${difference} ${unit} ago`;
+    },
+    gotToCategory() {
+      window.location.href = `/${this.category.id}`
     }
   },
 }
@@ -57,8 +60,10 @@ export default {
 
     .category-icon .fa {
       font-size: 55px;
-      color: transparent;
+      color: #e5f4e4;
+      text-shadow: 2px 2px #03A84E;
       -webkit-text-stroke: 2px #03A84E;
+      color: rgba(3, 168, 78, 0);
       text-shadow: 4px 4px rgba(78, 181, 72, 0.15);
     }
 
