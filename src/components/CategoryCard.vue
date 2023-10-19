@@ -33,7 +33,7 @@ export default {
       return `Last update ${difference} ${unit} ago`;
     },
     gotToCategory() {
-      window.location.href = `/${this.category.id}`
+      window.location.href = `/category/${this.category.id}`
     }
   },
 }

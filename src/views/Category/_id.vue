@@ -61,6 +61,7 @@ import CategoryCard from '../../components/CategoryCard.vue'
 import axios from 'axios';
 
 export default {
+  name: 'Category',
   components: {
     'article-card': ArticleCard,
     'category-card': CategoryCard

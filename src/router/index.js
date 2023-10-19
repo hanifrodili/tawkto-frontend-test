@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Main from '../views/Main.vue'
 import Category from '../views/Category/_id.vue'
+import Search from '../views/Search.vue'
 
 Vue.use(VueRouter)
 
@@ -12,9 +13,14 @@ const routes = [
     component: Main
   },
   {
-    path: '/:id',
+    path: '/category/:id',
     name: 'Category',
     component: Category
+  },
+  {
+    path: '/search',
+    name: 'Search',
+    component: Search
   }
 ]
 

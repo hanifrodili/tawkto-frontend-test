@@ -6,6 +6,7 @@
 import Category from '../components/CategorySection.vue'
 
 export default {
+  name: 'Main',
   components: {
     'tawk-category': Category
   }
